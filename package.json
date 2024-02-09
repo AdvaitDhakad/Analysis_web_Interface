@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "full-dev": "concurrently \"next dev\" \"FLASK_DEBUG=1 pip3 install -r requirements.txt && python3 -m flask --app api/index run -p 8000 --reload\"",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "bunx": "^0.1.0",
+    "concurrently": "^8.2.2",
+    "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.1.0"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "eslint": "^8",
