@@ -4,11 +4,28 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import styled from "@mui/material/styles/styled";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+
+function handleFileUpload() {
+  console.log("File Uploaded");
+  async function handleFileUpload(event) {
+    if (!event.target.files || event.target.files.length === 0) {
+      return; // User canceled file selection
+    }
+    const file = event.target.files[0];
+    await fetch("/api/file", {
+      method: "POST",
+      body: file,
+      headers: {
+        "Content-Type": file.type,
+      },
+    });
+  }
+}
 
 const Item = styled(Paper)(({ header1, text1, theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   border: "2px dashed",
+
   padding: theme.spacing(1),
   textAlign: "center",
   color: theme.palette.text.secondary,
@@ -18,6 +35,7 @@ const Item = styled(Paper)(({ header1, text1, theme }) => ({
   text1: {
     fontSize: "1em",
   },
+  height: "140%",
   "&:hover": {
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   },
@@ -34,11 +52,17 @@ export default function Analysis() {
               This is a simple example of a tabular data analysis using Python
               Pandas and MatplotLib.
             </p>
-
-            <input type="file" id="file" accept=".xls, .csv" />
-            <label for="file" class="btn-2-file">
-              upload
-            </label>
+            <div style={{ paddingTop: "60px" }}>
+              <input
+                type="file"
+                id="file"
+                accept=".xls, .csv"
+                onChange={handleFileUpload}
+              />
+              <label for="file" class="btn-2-file">
+                upload
+              </label>
+            </div>
           </Item>
         </Grid>
         <Grid item xs={6}>
@@ -48,19 +72,21 @@ export default function Analysis() {
               This is a simple example of a stock market data analysis using
               Python Pandas, MatplotLib and Finance Tools.
             </p>
-            <input
-              style={{
-                width: "20rem",
-                paddingBottom: "27px",
-                padding: "12px 20px",
-                margin: "8px 10px",
-                display: "inline-block",
-                borderRadius: "4px",
-                fontSize: "100%",
-              }}
-              type="text"
-              placeholder="Enter the Symbol of Company."
-            />
+            <div style={{ paddingTop: "60px" }}>
+              <input
+                style={{
+                  width: "20rem",
+                  paddingBottom: "27px",
+                  padding: "12px 20px",
+                  margin: "8px 10px",
+                  display: "inline-block",
+                  borderRadius: "4px",
+                  fontSize: "100%",
+                }}
+                type="text"
+                placeholder="Enter the Symbol of Company."
+              />
+            </div>
           </Item>
         </Grid>
         /
