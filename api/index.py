@@ -18,6 +18,7 @@ def api_call():
 def file_upload():
     file = request.files['file']
     file.save(file.filename)
+    print(file.filename)
     return {"status": "success", "message": "File uploaded successfully"}
 
 

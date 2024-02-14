@@ -17,6 +17,8 @@ const ExpandMore = styled((props) => {
 })(({ theme, expand }) => ({
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
   marginLeft: "auto",
+  padding: "0px",
+  width: "30px",
   transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
@@ -31,25 +33,21 @@ export default function TextCard({ header1, text2 }) {
   return (
     <Card>
       <CardHeader
-        title={
-          <div className="r">
-            <Typography variant="h4">{header1}</Typography>
-          </div>
+        title={<Typography variant="h5">{header1}</Typography>}
+        action={
+          <CardActions>
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </CardActions>
         }
       />
-      <Typography variant="body2" color="text.secondary">
-        {text2}
-      </Typography>
-      <CardActions>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>{text2}</Typography>
