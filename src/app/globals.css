@@ -1,5 +1,5 @@
 &.btn-2-file {
-  background-color: #99c793;
+  background-color: #ffffff;
   border-radius: 50px;
   overflow: hidden;
 
@@ -31,7 +31,7 @@
 }
 
 [type="file"] + label {
-  background: #bfbef7;
+  background: #dbdbdf;
   border: none;
   border-radius: 5px;
   color: #000000;
