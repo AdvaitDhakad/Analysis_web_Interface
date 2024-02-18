@@ -4,7 +4,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import styled from "@mui/material/styles/styled";
-
+import UploadTabular from "../(components)/upload_tabular";
 function handleFileUpload() {
   console.log("File Uploaded");
   async function handleFileUpload(event) {
@@ -52,17 +52,7 @@ export default function Analysis() {
               This is a simple example of a tabular data analysis using Python
               Pandas and MatplotLib.
             </p>
-            <div style={{ paddingTop: "60px" }}>
-              <input
-                type="file"
-                id="file"
-                accept=".xls, .csv"
-                onChange={handleFileUpload}
-              />
-              <label for="file" class="btn-2-file">
-                upload
-              </label>
-            </div>
+            <UploadTabular />
           </Item>
         </Grid>
         <Grid item xs={6}>
@@ -89,7 +79,6 @@ export default function Analysis() {
             </div>
           </Item>
         </Grid>
-        /
       </Grid>
     </div>
   );
