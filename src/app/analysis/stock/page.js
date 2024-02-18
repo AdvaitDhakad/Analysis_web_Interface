@@ -4,7 +4,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import styled from "@mui/material/styles/styled";
-import UploadTabular from "../(components)/upload_tabular";
+
 function handleFileUpload() {
   console.log("File Uploaded");
   async function handleFileUpload(event) {
@@ -43,18 +43,8 @@ const Item = styled(Paper)(({ header1, text1, theme }) => ({
 
 export default function Analysis() {
   return (
-    <div style={{ padding: "10px" }}>
+    <div style={{ padding: "10px", paddingTop: "25px" }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
-          <Item>
-            <h3>Data Analysis on Tabular Data</h3>
-            <p>
-              This is a simple example of a tabular data analysis using Python
-              Pandas and MatplotLib.
-            </p>
-            <UploadTabular />
-          </Item>
-        </Grid>
         <Grid item xs={6}>
           <Item header1="Data Analysis on Stock Market Data">
             <h3>Data Analysis on Stock Market Data</h3>
