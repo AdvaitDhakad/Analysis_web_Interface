@@ -14,13 +14,11 @@ def api_call():
     return {"status": "success", "message": "Integrate Flask Framework with Next.js"}
 
 
-@app.route("/api/file", methods=["POST"])
-def file_upload():
-    file = request.files['file']
-    file.save(file.filename)
-    print(file.filename)
+@app.route("/api/upload", methods=["POST","axios"])
+def upload_file():
+    print(request.data)
+    
     return {"status": "success", "message": "File uploaded successfully"}
-
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -10,24 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useState } from "react";
 import TextCard from "@/app/(components)/textcard";
-
-function handleFileUpload() {
-  console.log("File Uploaded");
-  setFile_uploaded(true);
-  async function handleFileUpload(event) {
-    if (!event.target.files || event.target.files.length === 0) {
-      return; // User canceled file selection
-    }
-    const file = event.target.files[0];
-    await fetch("/api/file", {
-      method: "POST",
-      body: file,
-      headers: {
-        "Content-Type": file.type,
-      },
-    });
-  }
-}
+import UploadTabular from "@/app/(components)/upload_tabular";
 
 const Item = styled(Paper)(({ header1, text1, theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -69,50 +52,8 @@ export default function Analysis() {
               Pandas and MatplotLib.
             </p>
             <div style={{ paddingTop: "60px" }}>
-              <input
-                type="file"
-                id="file"
-                accept=".xls, .csv"
-                onChange={handleFileUpload}
-              />
-              <label for="file" class="btn-2-file">
-                upload
-              </label>
+              <UploadTabular />
             </div>
-            {file_uploaded ? (
-              <div>
-                <FormControl>
-                  <FormLabel id="demo-row-radio-buttons-group-label">
-                    Does the data have header row?
-                  </FormLabel>
-                  <RadioGroup
-                    row
-                    aria-labelledby="demo-row-radio-buttons-group-label"
-                    name="row-radio-buttons-group"
-                  >
-                    <FormControlLabel
-                      value="yes"
-                      control={<Radio />}
-                      label="yes"
-                    />
-                    <FormControlLabel
-                      value="no"
-                      control={<Radio />}
-                      label="no"
-                    />
-
-                    <FormControlLabel
-                      value="disabled"
-                      disabled
-                      control={<Radio />}
-                      label="other"
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </div>
-            ) : (
-              <div></div>
-            )}
           </Item>
         </Grid>
       </Grid>
